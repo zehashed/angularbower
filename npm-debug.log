@@ -1,0 +1,71 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'angular-endless-scroll' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'angular-endless-scroll', null ]
+6 verbose cache add name=undefined spec="angular-endless-scroll" args=["angular-endless-scroll",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'angular-endless-scroll',
+7 verbose parsed url   path: 'angular-endless-scroll',
+7 verbose parsed url   href: 'angular-endless-scroll' }
+8 silly lockFile 22006ea5-angular-endless-scroll angular-endless-scroll
+9 verbose lock angular-endless-scroll /root/.npm/22006ea5-angular-endless-scroll.lock
+10 silly lockFile 22006ea5-angular-endless-scroll angular-endless-scroll
+11 silly lockFile 22006ea5-angular-endless-scroll angular-endless-scroll
+12 verbose addNamed [ 'angular-endless-scroll', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 9baef0c7-angular-endless-scroll angular-endless-scroll@
+15 verbose lock angular-endless-scroll@ /root/.npm/9baef0c7-angular-endless-scroll.lock
+16 silly addNameRange { name: 'angular-endless-scroll', range: '*', hasData: false }
+17 verbose request where is /angular-endless-scroll
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 278bb924d433b9be
+20 verbose url raw /angular-endless-scroll
+21 verbose url resolving [ 'https://registry.npmjs.org/', './angular-endless-scroll' ]
+22 verbose url resolved https://registry.npmjs.org/angular-endless-scroll
+23 verbose request where is https://registry.npmjs.org/angular-endless-scroll
+24 info trying registry request attempt 1 at 16:35:19
+25 http GET https://registry.npmjs.org/angular-endless-scroll
+26 http 404 https://registry.npmjs.org/angular-endless-scroll
+27 silly registry.get cb [ 404,
+27 silly registry.get   { 'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=0',
+27 silly registry.get     'content-length': '2',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     date: 'Fri, 27 May 2016 11:04:55 GMT',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     connection: 'close',
+27 silly registry.get     'x-served-by': 'cache-sin6925-SIN',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1464347095.343353,VS0,VE220',
+27 silly registry.get     vary: 'Accept-Encoding' } ]
+28 silly lockFile 9baef0c7-angular-endless-scroll angular-endless-scroll@
+29 silly lockFile 9baef0c7-angular-endless-scroll angular-endless-scroll@
+30 error 404 Not Found
+30 error 404
+30 error 404 'angular-endless-scroll' is not in the npm registry.
+30 error 404 You should bug the author to publish it
+30 error 404
+30 error 404 Note that you can also install from a
+30 error 404 tarball, folder, or http url, or git url.
+31 error System Linux 3.13.0-32-generic
+32 error command "/usr/bin/node" "/usr/bin/npm" "install" "angular-endless-scroll"
+33 error cwd /var/www/angularbower
+34 error node -v v0.10.37
+35 error npm -v 1.4.28
+36 error code E404
+37 verbose exit [ 1, true ]

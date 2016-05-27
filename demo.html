@@ -1,0 +1,380 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+  <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body  class="icondemoFontIconsWithLigatures">
+
+  <!--
+    Your HTML content here
+  -->  
+	<div flex="" ng-cloak="" class="gridListdemoDynamicTiles" ng-app="MangaApp">
+
+	<div ng-view></div>
+
+	<!-- CACHE FILE: list.html -->
+    <script type="text/ng-template" id="list.html">
+        
+	
+		<div class="text-center">
+			<dir-pagination-controls
+			   max-size="10"
+			   direction-links="true"
+			   boundary-links="true" >
+			</dir-pagination-controls>
+			 <div layout-gt-sm="row">
+				<md-input-container class="md-block">
+					<label >Search</label>
+					<input type="text" ng-model="search" class="form-control" placeholder="Search">
+				</md-input-container>
+				<md-input-container class="md-block">
+					<label>Select Sort Order</label>
+					<md-select ng-model="orderby" ng-change="onOrderChange();" >
+						<md-option value="title" >Title A-Z</md-option>
+						<md-option value="-title" >Title Z-A</md-option>
+						<md-option value="hits" >Hits 0..10..1000</md-option>
+						<md-option value="-hits" >Hits 1000..10.0</md-option>
+						<md-option value="date" >Update Date</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
+			
+	   </div>
+	  <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="4" md-row-height-gt-md="3:4" md-row-height-md="3:4" md-row-height="3:4" md-gutter="8px" md-gutter-gt-sm="4px">
+
+		<md-grid-tile data-ng-click="goto_detail(tile.i)" md-ink-ripple="{{ randomColor() }}"  ng-class="tile.background" dir-paginate="tile in tiles|orderBy:currentorder|filter:search|itemsPerPage:36" >
+		  <img src="https://cdn.mangaeden.com/mangasimg/{{tile.image}}" />
+		  <md-grid-tile-footer>
+			<h3>{{tile.title}}</h3>
+			<ul><li ng-repeat="c_c in tile.cats">{{c_c}}</li></ul>
+		  </md-grid-tile-footer>
+
+		</md-grid-tile>
+	  </md-grid-list>
+	  <div class="text-center">
+		<dir-pagination-controls
+		   max-size="10"
+		   direction-links="true"
+		   boundary-links="true" >
+		</dir-pagination-controls>
+	   </div>
+	</script>
+	
+	 <!-- CACHE FILE: detail.html -->
+    <script type="text/ng-template" id="detail.html">
+    <md-toolbar class="md-warn">
+	    <div class="md-toolbar-tools">
+    	  <h2 class="md-flex pull-left">{{manga.title}}</h2>
+    	  <md-button class="md-raised md-primary btn btn-default pull-right" data-ng-click="goto_list()">Back to List</md-button>
+    	  <div class="clearfix"></div>
+	    </div>
+    </md-toolbar>
+    <md-content flex layout-padding>
+    	<img src="https://cdn.mangaeden.com/mangasimg/{{manga.image}}"  class="md-card-image" />
+    	<p>
+    	<span class="md-subhead" ng-bind-html="manga.description | trustAs"></span>
+    	</p>
+    	<p>
+    	<table class="table" >
+    		 <thead>
+				<tr>
+					<th style="width:10%">#</th>
+					<th style="width:70%">Chapter name</th>
+					<th style="width:20%">Date added</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="chapter in manga.chapters" data-ng-click="goto_chapter(chapter[3])">
+				<td>{{$index + 1}}</td>
+				<td>{{manga.title}} Chapter {{chapter[2]}}-{{chapter[0]}}</td>
+				<td><mydate>{{chapter[1] * 1000 | date:'MMMM d, yyyy'}}</mydate></td>
+			</tr>
+			</tbody>
+		</table>
+
+
+    	</p>
+    	<md-list>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Alternative name(s)</h3>
+			  <p ng-repeat="an_name in manga.aka" ng-bind-html="an_name | trustAs"></p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Rating</h3>
+			  <p></p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Year of release</h3>
+			  <p>{{manga.released}}</p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Author</h3>
+			  <p>{{manga.released}}</p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Categories</h3>
+			  <p ng-repeat="an_cat in manga.categories" ng-bind-html="an_cat | trustAs"></p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Type</h3>
+			  <p>{{manga.type}}</p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+		  <md-list-item class="md-3-line" >
+			<div class="md-list-item-text">
+			  <h3>Status</h3>
+			  <p>{{manga.status}}</p>
+			</div>
+			<md-divider ng-if="!$last"></md-divider>
+		  </md-list-item>
+
+		</md-list>
+    </md-content>
+    </script>
+    <!-- CACHE FILE: detail.html -->
+    <script type="text/ng-template" id="chapter.html">
+    	<md-content flex layout-padding>
+    		<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+			  <md-button class="md-raised md-primary" data-ng-click="goto_list()">Back to List</md-button>
+			  <md-button class="md-raised md-warn" data-ng-click="goto_manga(manga.i)">Back to {{manga.title}}</md-button>
+
+			  <md-input-container style="margin-right: 10px;">
+				<label>Chapter</label>
+				<md-select ng-model="chapter" ng-change="onChapterChange();" >
+				  <md-option ng-repeat="chapter in manga.chapters" value="{{chapter[3]}}" >{{chapter[2]}}</md-option>
+				</md-select>
+			  </md-input-container>
+			</section>
+			
+    		<!-- 
+<p>
+    			<md-button class="md-raised " ng-click="previous()">prev</md-button>
+			  	<md-button class="md-raised " ng-click="next()">next</md-button>
+    		</p>
+ -->
+    		<p class="chapter-pages">
+    		<img ng-repeat="page in dataShow" src="https://cdn.mangaeden.com/mangasimg/{{page.image}}" title="{{page.index}}" alt="{{page.index}}" /><br />
+    		<md-button class="md-raised " ng-click="next()">Load Next</md-button>
+    		</p>
+    	</md-content>
+    </script>
+    
+</div>
+
+
+  
+  <!-- Angular Material requires Angular.js Libraries -->
+  
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+   <script src="node_modules/angular-route/angular-route.min.js"></script>
+  
+  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="node_modules/angular-material/angular-material.min.js"></script>
+
+  <!-- Angular Pagination -->
+  <script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
+  
+  
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">    
+    
+var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.directives.dirPagination','ngRoute']);
+app.config(function($routeProvider) {
+    $routeProvider.
+    when('/list', {
+        controller: "listdata",
+        templateUrl: 'list.html'
+    }).
+        when('/detail/:id', {
+        controller: "DetailCtrl",
+        templateUrl: 'detail.html'
+    }).
+    when('/chapter/:mangaid/:chapterid', {
+        controller: "ChapterCtrl",
+        templateUrl: 'chapter.html'
+    }).
+    otherwise({
+        redirectTo: '/list'
+    });
+});
+
+app.controller('DetailCtrl', function($scope, $http,$routeParams,$location) {
+	mangaid = $routeParams.id;
+	$http.get("https://www.mangaeden.com/api/manga/"+mangaid+"/")
+	.then(function (response) {
+		$scope.manga = response.data;	
+	});
+	
+	$scope.goto_list = function(id) {
+			$location.url('/list/');
+		};
+	$scope.goto_chapter = function(id){
+		$location.url('/chapter/'+mangaid+"/"+id);
+	};
+	
+})
+.filter('trustAs', ['$sce', 
+    function($sce) {
+        return function (input, type) {
+            if (typeof input === "string") {
+                return $sce.trustAs(type || 'html', input);
+            }
+            console.log("trustAs filter. Error. input isn't a string");
+            return "";
+        };
+    }
+]);
+
+app.controller('ChapterCtrl', function($scope, $http,$routeParams,$location,$window) {
+	mangaid = $routeParams.mangaid;
+	chapterid = $routeParams.chapterid;
+	$scope.chapterid = chapterid;
+	$scope.chapter = chapterid;
+	$scope.dataShow = [];
+	$http.get("https://www.mangaeden.com/api/chapter/"+chapterid+"/")
+	.then(function (response) {
+		
+		// chapter = response.data;	
+		var chapterdata = [];
+		response.data.images.forEach(function(val){
+			cdata = {"index":val[0] , "image" : val[1]};
+		   chapterdata.unshift(cdata);
+		});
+
+		$scope.dataSet = chapterdata;
+		$scope.current = $scope.dataSet[0];
+		$scope.dataShow.push($scope.current);
+	});
+	$http.get("https://www.mangaeden.com/api/manga/"+mangaid+"/")
+	.then(function (response) {
+		$scope.manga = response.data;	
+	});
+	
+	
+    $scope.next = function(){
+        var i = $scope.getIndex($scope.current.index, 1);
+        $scope.current = $scope.dataSet[i];
+        $scope.dataShow.push($scope.current);
+        
+    };
+    $scope.previous = function(){
+        var i = $scope.getIndex($scope.current.index, -1);
+        $scope.current = $scope.dataSet[i];
+    };
+    $scope.getIndex = function(currentIndex, shift){
+        var len = $scope.dataSet.length;
+        return (((currentIndex + shift) + len) % len)
+    };
+    
+	$scope.goto_list = function(id) {
+			$location.url('/list/');
+	};
+	$scope.goto_manga = function(id) {
+			$location.url('/detail/'+mangaid);
+	};
+	$scope.onChapterChange = function(){
+		$scope.chapter;
+		$location.url('/chapter/'+mangaid+"/"+$scope.chapter);
+	};
+	
+});
+  app.controller('listdata', function($scope, $http,$location) {
+
+//     this.tiles = buildGridModel({
+//             icon : "",
+//             title: "",
+//             background: ""
+//           });
+
+//     function buildGridModel(tileTmpl){
+		$scope.currentorder = 'date';
+		$scope.orderby  = $scope.currentorder;
+		var vm = this;
+		vm.tiles = []; //declare an empty array
+		vm.availableSorts = [{"name" : "Title A-Z" , "value" : "t"}, {"name":"Hits" , "value":"h"}];
+		vm.pageno = 0; // initialize page no to 1
+		vm.total_count = 0;
+		vm.itemsPerPage = 36;
+		vm.getData = function(pageno){ 
+			var it, results = [ ];
+			var APIItems = null ;
+			var tileTmpl = [{ image : "",title: "",background: ""}];
+// 			$http.get("https://www.mangaeden.com/api/list/1/?p="+pageno+"&l="+vm.itemsPerPage)
+			$http.get("list_s_0.json")
+			.then(function (response) {
+				console.log(response);
+				APIItems = response.data.manga;
+				vm.total_count = response.data.total;
+				j=0;
+				for(val in response.data.manga){
+					it = angular.extend({},tileTmpl);
+					it.image  = APIItems[val].im;
+					it.date = APIItems[val].it;
+					it.hits = APIItems[val].h;
+					it.title = APIItems[val].t;
+					it.i = APIItems[val].i;
+					it.cats = APIItems[val].c;
+					
+					it.span  = { row : 1, col : 1 };
+					it.info = APIItems[val];
+					switch((j+1)%10) {
+					  case 1:it.background = "red";				break;
+					  case 2: it.background = "green";         	break;
+					  case 3: it.background = "darkBlue";      	break;
+					  case 4: it.background = "blue";			break;
+					  case 5: it.background = "yellow";			break;
+					  case 6: it.background = "pink";          break;
+					  case 7: it.background = "darkBlue";      break;
+					  case 8: it.background = "purple";        break;
+					  case 9: it.background = "deepBlue";      break;
+					  case 10: it.background = "lightPurple";  break;
+					}
+					results.push(it);
+					j++;  
+				}
+				$scope.tiles =  results;
+				vm.tiles  = results;
+			});
+			
+		};
+		vm.getData(vm.pageno);
+
+		$scope.goto_detail = function(id) {
+			$location.url('/detail/' + id);
+		};
+		
+		$scope.onOrderChange = function(){
+			$scope.currentorder = $scope.orderby;
+		}
+  });
+
+</script>
+
+  
+</body>
+</html>
+

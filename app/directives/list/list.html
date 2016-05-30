@@ -1,0 +1,41 @@
+<div class="text-center">
+	<dir-pagination-controls
+	   max-size="10"
+	   direction-links="true"
+	   boundary-links="true" >
+	</dir-pagination-controls>
+	 <div layout-gt-sm="row">
+		<md-input-container class="md-block">
+			<label >Search</label>
+			<input type="text" ng-model="search" class="form-control" placeholder="Search">
+		</md-input-container>
+		<md-input-container class="md-block">
+			<label>Select Sort Order</label>
+			<md-select ng-model="orderBy" ng-change="onOrderChange();" >
+				<md-option value="title" >Title A-Z</md-option>
+				<md-option value="-title" >Title Z-A</md-option>
+				<md-option value="hits" >Hits 0..10..1000</md-option>
+				<md-option value="-hits" >Hits 1000..10.0</md-option>
+				<md-option value="date" >Update Date</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
+</div>
+<md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="4" md-row-height-gt-md="3:4" md-row-height-md="3:4" md-row-height="3:4" md-gutter="8px" md-gutter-gt-sm="4px">
+
+<md-grid-tile data-ng-click="goto_detail(tile.i)" md-ink-ripple="{{ randomColor() }}"  ng-class="tile.background" dir-paginate="tile in tiles|orderBy:currentorder|filter:search|itemsPerPage:36" >
+  <img src="https://cdn.mangaeden.com/mangasimg/{{tile.image}}" />
+  <md-grid-tile-footer>
+	<h3>{{tile.title}}</h3>
+	<ul><li ng-repeat="c_c in tile.cats">{{c_c}}</li></ul>
+  </md-grid-tile-footer>
+
+</md-grid-tile>
+</md-grid-list>
+<div class="text-center">
+<dir-pagination-controls
+   max-size="10"
+   direction-links="true"
+   boundary-links="true" >
+</dir-pagination-controls>
+</div>

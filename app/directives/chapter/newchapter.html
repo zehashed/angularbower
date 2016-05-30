@@ -1,0 +1,26 @@
+<md-content flex layout-padding >
+	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+	  <md-button class="md-raised md-primary" data-ng-click="gotoList()">Back to List</md-button>
+	  <md-button class="md-raised md-warn" data-ng-click="gotoManga(manga.i)">Back to {{manga.title}}</md-button>
+	  <md-input-container style="margin-right: 10px;">
+		<label>Chapter</label>
+		<md-select ng-model="chapter" ng-change="onChapterChange();" >
+		  <md-option ng-repeat="chapter in manga.chapters" value="{{chapter[3]}}" >{{chapter[2]}}</md-option>
+		</md-select>
+	  </md-input-container>
+	</section>
+	<p class="chapter-pages">
+	<img ng-repeat="page in dataShow" src="https://cdn.mangaeden.com/mangasimg/{{page.image}}" title="{{page.index}}" alt="{{page.index}}" /><br />
+	<md-button class="md-raised " id="waypoint" ng-click="next()">Load Next</md-button>
+	</p>
+</md-content>
+<script>
+
+var waypoint = new Waypoint({
+  element: document.getElementById('waypoint'),
+  handler: function(direction) {
+    element.trigger('click');
+  }
+})
+
+</script>

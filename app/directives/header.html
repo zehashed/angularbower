@@ -1,0 +1,101 @@
+<header>
+<md-toolbar>
+    <div layout="row" layout-xs="column" layout-align="space-between center" class="container">
+      <div class="top-social" flex>
+          <a href="#"><ng-md-icon icon="facebook" style="fill: white" size="24"></ng-md-icon></a>
+          <a href="#"><ng-md-icon icon="twitter" style="fill: white" size="24"></ng-md-icon></a>
+          <a href="#"><ng-md-icon icon="google-plus" style="fill: white" size="24"></ng-md-icon></a>
+          <a href="#"><ng-md-icon icon="linkedin" style="fill: white" size="24"></ng-md-icon></a>
+      </div>
+      <div class="searchbox" layout="row" layout-align="left center">
+        <ng-md-icon icon="search" style="fill: gray" size="26"></ng-md-icon>
+        <input ng-model="searchInput" class="searchInput" placeholder="Search by Title, Publisher, Genre, or Creator" flex>
+      </div>
+      <div class="login_register">
+      	<a href="#">log in</a> | <a href="#">Register</a>
+      </div>
+    </div>
+  </md-toolbar>
+  <div layout="row" layout-align="space-between center" class="container">
+    <div flex><a class="logo" href="#"><img src="images/logo.svg" /></a></div>
+    <nav class="">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <md-menu-bar layout-xs="column">
+        <md-menu>
+          <button class="active" ng-click="$mdOpenMenu()"> Home </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> About Us </button>
+          <md-menu-content>
+            <md-menu-item>
+              <md-button ng-click="ctrl.sampleAction('share', $event)"> Menu 1 </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
+              <md-menu>
+                <md-button ng-click="$mdOpenMenu()">Menu 2</md-button>
+                <md-menu-content>
+                  <md-menu-item>
+                    <md-button ng-click="ctrl.sampleAction('New Document', $event)">sub menu 1</md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">sub menu 2</md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="ctrl.sampleAction('New Presentation', $event)">sub menu 3</md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="ctrl.sampleAction('New Form', $event)">sub menu 4</md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="ctrl.sampleAction('New Drawing', $event)">sub menu 5</md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="ctrl.sampleAction('Open', $event)"> Menu 3 </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="ctrl.sampleAction('Rename', $event)"> Menu 4 </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> Latest </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> Genres </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> Advance Search </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> Blog </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> Special </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+        <md-menu>
+          <button ng-click="$mdOpenMenu()"> Contact Us </button>
+          <md-menu-content></md-menu-content>
+        </md-menu>
+      </md-menu-bar>          
+        </div>
+    </nav>
+  </div>
+</header>

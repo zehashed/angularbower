@@ -9,18 +9,4 @@
 		</md-select>
 	  </md-input-container>
 	</section>
-	<p class="chapter-pages">
-	<img ng-repeat="page in dataShow" src="https://cdn.mangaeden.com/mangasimg/{{page.image}}" title="{{page.index}}" alt="{{page.index}}" /><br />
-	<md-button class="md-raised " id="waypoint" ng-click="next()">Load Next</md-button>
-	</p>
-</md-content>
-<script>
-
-var waypoint = new Waypoint({
-  element: document.getElementById('waypoint'),
-  handler: function(direction) {
-    element.trigger('click');
-  }
-})
-
-</script>
+<p class="chapter-pages">&nbsp;</p>

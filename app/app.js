@@ -1,3 +1,13 @@
+var header = angular.module('Header', ['ngMaterial', 'ngMdIcons']);
+header.controller('HeaderController', ['$scope', function($scope) {
+}])
+.directive('mangaHeader', function() {
+  return {
+    templateUrl: 'app/directives/header.html'
+  };
+});
+
+
 var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.directives.dirPagination','ngRoute' ]);
 	app.config(function($routeProvider) {
     $routeProvider.
@@ -5,17 +15,55 @@ var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.d
         controller: "listCtrl",
         templateUrl: 'app/directives/list/list.html'
     }).
-        when('/detail/:id', {
+    when('/detail/:id', {
         controller: "DetailCtrl",
         templateUrl: 'app/directives/detail/detail.html'
     }).
     when('/chapter/:mangaId/:chapterId', {
         controller: "ChapterCtrl",
-        templateUrl: 'app/directives/chapter/newchapter.html'
+        templateUrl: 'app/directives/chapter/chapter.html'
+    }).
+     when('/home', {
+        controller: "HomeCtrl",
+        templateUrl: 'app/directives/home.html'
     }).
     otherwise({
-        redirectTo: '/list'
+        redirectTo: '/home'
     });
+});
+
+app.directive('userAvatar', function() {
+    return {
+        link: function(scope, element, attrs) {
+            var placeholder = 'images/grid_img.jpg';
+
+            scope.$watch(function() {
+                return attrs.ngSrc;
+            }, function (value) {
+                if (!value) {
+                    element.attr('src', placeholder);  
+                }
+            });
+
+            element.bind('error', function() {
+                element.attr('src', placeholder);  
+            });
+        }
+    };
+});
+
+app.controller('HomeCtrl' , function($scope, $http,$routeParams,$location){
+	
+	//
+	$http.get("https://www.mangaeden.com/api/list/1/?p=0&l=30")
+        .then(function (response) {
+        console.log(response);
+        $scope.latestManga = response.data.manga;
+        });
+    $scope.goto_detail = function(id) {
+			$location.url('/detail/' + id);
+		};
+
 });
 
 app.controller('DetailCtrl', function($scope, $http,$routeParams,$location) {
@@ -65,17 +113,17 @@ app.controller('ChapterCtrl', function($scope, $http,$routeParams,$location,$win
 		$scope.current = $scope.dataSet[0];
 		$scope.dataShow.push($scope.current);
 		
-		
-		$('#waypoint').waypoint(function(direction) {
-		  alert('Top of thing hit top of viewport.');
+		/* custom code added for lazy load effect*/
+		var i = 0;
+		jQuery( ".chapter-pages" ).scroll(function() {
+			jQuery(".chapter-pages img.lazy-load:not(.lazy-loaded)").each(function(){
+				if($(this).position().top - $(this).parent().height() < - ($(this).parent().height()/2)){
+					jQuery(this).attr('src' ,jQuery(this).attr('data-src'));
+					jQuery(this).addClass('lazy-loaded');
+				}
+			});
 		});
-// 		var waypoint = new Waypoint({
-// 		  element: document.getElementById('waypoint'),
-// 		  handler: function(direction) {
-// 			element.trigger('click');
-// 			// alert("yes show next");
-// 		  }
-// 		});
+		/* custom code added for lazy load effect : ends*/
 	});
 	$http.get("https://www.mangaeden.com/api/manga/"+mangaId+"/")
 	.then(function (response) {
@@ -170,3 +218,16 @@ app.controller('ChapterCtrl', function($scope, $http,$routeParams,$location,$win
 			$scope.currentorder = $scope.orderBy;
 		}
   });
+
+var footer = angular.module('Footer', ['ngMaterial', 'ngMdIcons']);
+footer.controller('FooterController', ['$scope', function($scope) {
+}])
+.directive('mangaFooter', function() {
+  return {
+    templateUrl: 'app/directives/footer.html'
+  };
+});
+
+
+angular.bootstrap(document.getElementById("AppContent"), ['MangaApp']);
+angular.bootstrap(document.getElementById("FooterApp"), ['Footer']);

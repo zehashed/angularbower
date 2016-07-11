@@ -1,87 +1,42 @@
 <html lang="en" >
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
-  <link rel="stylesheet" href="style.css">
+	<title>MangaPark</title>
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+	<link rel="stylesheet" href="node_modules/bootstrap-material-design/node_modules/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="css/style.css">
 </head>
-<body  class="icondemoFontIconsWithLigatures">
-
-  <!--
-    Your HTML content here
-  -->  
-	<div ng-app="myApp" ng-controller="customersCtrl"> 
-
-<div class="sort md-caption" layout>
-  <div class="collection-sort" layout="column">
-	<md-input-container>
-	  <label>Filter by:</label>
-	  <md-select ng-model="http.filterBy">
-		<md-option value="{{filter}}" ng-repeat="filter in http.availableFilters">{{filter}}</option>
-	  </md-select>
-	</md-input-container>
-  </div>
-  <div class="collection-sort" layout="column">
-	<md-input-container>
-	  <label>Sort by:</label>
-	  <md-select ng-model="http.sortedBy">
-		<md-option value="{{sort}}" ng-repeat="sort in http.availableSorts">{{sort}}</option>
-	  </md-select>
-	</md-input-container>
-  </div>
-    </div>
-
-<section class="catalog" layout layout-wrap layout-align="center">
-<md-card class="" ng-repeat="x in names" flex="22" flex-sm="46" flex-xs="80"  >
-	<img src="https://cdn.mangaeden.com/mangasimg/{{x.im}}" />
-	 	<md-card-footer-text layout="column">
-			<span class="md-title ng-binding">{{ x.a }}</span>
-			<span class="md-title ng-binding">{{ x.c }}</span>
-			<span class="md-title ng-binding">{{ x.h }}</span>
-			<span class="md-title ng-binding">{{ x.i }}</span>
-			<span class="md-title ng-binding">{{ x.s }}</span>
-			<span class="md-title ng-binding">{{ x.t }}</span>
-		</md-card-footer-text>
-</md-card>
-</section>
-</div>
-  
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="node_modules/angular/angular.min.js"></script>
-  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
-  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
-  <script src="node_modules/angular-messages/angular-messages.min.js"></script>
-
-  <!-- Angular Material Library -->
-  <script src="node_modules/angular-material/angular-material.min.js"></script>
-  
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
-    /**
-     * You must include the dependency on 'ngMaterial' 
-     */
-
-angular.module('material.components.progressCircular', ['material.core']);
-
-	var app = angular.module('myApp',['ngMaterial']);
-	app.controller('customersCtrl', function($scope, $http) {
-    	// $http.get("http://www.w3schools.com/angular/customers_sql.aspx")
-    	$http.get("https://www.mangaeden.com/api/list/1/?p=1&l=5")
-    	.then(function (response) {
-    	console.log(response);
-    	$scope.names = response.data.manga;
-    	});
-    	
-    	 this.filterBy         = "All Jackets";
-		this.sortedBy         = "Featured"    
-		this.availableFilters = $http.availableFilters;
-		this.availableSorts   = ["1","2"]; 
-		this.catalog          = $http.catalog;        
-	});
-</script>
-
-  </script>
-  
+<body>
+	<!-- header -->	
+	<div ng-app="Header" id="HeaderApp" ng-controller="HeaderController" manga-header></div>
+	<!-- header -->
+	
+	<!-- APP -->
+	<div flex="" ng-cloak="" ng-app="MangaApp" id="AppContent">
+		<div ng-view></div>
+	</div>
+	<!-- APP -->
+	
+	<!-- footer -->
+	<div ng-app="Footer" id="FooterApp"  ng-controller="FooterController" manga-footer></div>
+	
+	<!-- Scripts -->
+	<!-- Angular Material requires Angular.js Libraries -->  
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="node_modules/angular-lazy-loader/src/angular-lazy-loader.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="node_modules/angular-route/angular-route.min.js"></script>
+	<script src="node_modules/angular-aria/angular-aria.min.js"></script>
+	<script src="node_modules/angular-messages/angular-messages.min.js"></script>
+	<!-- Angular Material Library -->
+	<script src="node_modules/angular-material/angular-material.min.js"></script>
+	<script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
+	<!-- Angular Pagination -->
+	<script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
+	<script src="node_modules/bootstrap-material-design/node_modules/jquery/dist/jquery.min.js"></script>
+	<!-- Your application bootstrap  -->  
+	<script src="node_modules/bootstrap-material-design/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
 </body>
 </html>
 

@@ -9,8 +9,8 @@
 		</md-select>
 	  </md-input-container>
 	</section>
-	<p class="chapter-pages">
-	<img ng-repeat="page in dataShow" src="https://cdn.mangaeden.com/mangasimg/{{page.image}}" title="{{page.index}}" alt="{{page.index}}" /><br />
-	<md-button class="md-raised " id="waypoint" ng-click="next()">Load Next</md-button>
-	</p>
+	<section class="chapter-pages" angular-lazy-load>
+		<img src="https://cdn.mangaeden.com/mangasimg/{{current.image}}" title="{{current.index}}" alt="{{current.index}}" /><br />
+		<img ng-repeat="page in dataSet" ng-if="$index != 0" class="lazy-load" data-src="https://cdn.mangaeden.com/mangasimg/{{page.image}}" title="{{page.index}}" alt="{{page.index}}" /><br />
+	</section>
 </md-content>

@@ -1,0 +1,177 @@
+<div class="slider container">
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="images/slider.jpg" width="1280" height="450"  alt=""/>
+      <div class="carousel-caption">
+        <h1>Big kids helping little kids</h1>
+        <p>Suspendisse tristique lobortis accumsan. Pellentesque nunc urna, elementum vitae odio quis, molestie accumsan dolor. Integer euismod malesuada magna, vel ultrices ligula pharetra ac. eque ut nisl interdum elementum.</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="images/slider.jpg" width="1280" height="450"  alt=""/>
+      <div class="carousel-caption">
+        <h1>Big kids helping little kids 2</h1>
+        <p>Suspendisse tristique lobortis accumsan. Pellentesque nunc urna, elementum vitae odio quis, molestie accumsan dolor. Integer euismod malesuada magna, vel ultrices ligula pharetra ac. eque ut nisl interdum elementum.</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="images/slider.jpg" width="1280" height="450"  alt=""/>
+      <div class="carousel-caption">
+        <h1>Big kids helping little kids 3</h1>
+        <p>Suspendisse tristique lobortis accumsan. Pellentesque nunc urna, elementum vitae odio quis, molestie accumsan dolor. Integer euismod malesuada magna, vel ultrices ligula pharetra ac. eque ut nisl interdum elementum.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<md-content layout="row" layout-xs="column" class="container" layout-align="space-between top">
+  <div class="wlcmhere" flex="70" flex-xs="100">
+    <h2>Welcome to our Website</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo, diam mollis varius pharetra, mi risus euismod est, ut mattis dui dolor non dui. Nullam feugiat feugiat ligula, et pulvinar ex condimentum a. Curabitur pellentesque pretium ante, quis efficitur lectus. Vestibulum maximus, est eu dictum rutrum, orci ante mattis tortor, at molestie nisl est vitae tellus. Maecenas sodales orci elit, nec sagittis diam lacinia non. Vestibulum bibendum blandit urna. Sed aliquet libero ex, quis rutrum ex viverra quis. Duis ac nulla lectus. Donec vel pretium dui, sed interdum quam. Mauris eget scelerisque nibh. Nam a massa quam.</p>
+  </div>
+  <span flex></span>
+  <div class="ourmission md-padding" flex="25" flex-xs="100">
+    <h2>Our Mission</h2>
+    <p>Fusce ac viverra libero. Donec vitae vulputate est, non fringilla odio. Nulla quam lacus, ultricies eget faucibus sit amet, vestibulum quis.</p>
+  </div>
+</md-content>
+<div class="container main" flex layout="row" layout-xs="column" layout-sm="column">
+  <md-content flex id="content">
+  	<div class="latest_story">
+    <md-toolbar class="blank-toolbar">
+      <div class="md-toolbar-tools">
+        <h2>Latest Story</h2>
+        <span flex></span>
+        <a class="active" href="#"><ng-md-icon icon="menu" size="24"></ng-md-icon> List</a>
+        <a href="#"><ng-md-icon icon="view_module" size="24"></ng-md-icon> Grid</a>
+      </div>
+    </md-toolbar>
+    <md-list class="product_list column-3">
+        <md-list-item class="pro_item" layout="column" ng-repeat="manga in latestManga|limitTo:12" >
+          <figure>
+          	<a href="javascript:void();" data-ng-click="goto_detail(manga.i)">
+          		<img ng-src="https://cdn.mangaeden.com/mangasimg/{{manga.im}}"  alt="" user-avatar/>
+          	</a>
+          </figure>
+          <h2><a href="#">{{manga.t}}</a></h2>
+          <p>by Tony 'G-Man' Guerrero | {{manga.ld * 1000 | date : "medium"}}</p>
+        </md-list-item>
+    </md-list>
+    </div>
+  </md-content>
+  <md-sidenav md-is-locked-open="true">
+    <div class="new_comics">
+        <md-toolbar class="blank-toolbar">
+          <div class="md-toolbar-tools">
+            <h2>New Comics</h2>
+            <span flex></span> </div>
+        </md-toolbar>
+        <md-list class="product_list column-1">
+          <md-list-item class="pro_item" layout="row" layout-align="left top">
+            <figure><a href="#"><img src="images/sidebar_pro_img.jpg" width="160" height="246" alt=""/></a></figure>
+            <span>
+                <h2><a href="#">Han Solo #1</a></h2>
+                <div class="review" layout="row">Review: <ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon></div>
+                <p>Everyoneâ€™s favorite scoundrel gets his very own series! Han is given a top-secret undercover mission for the rebellion.</p>
+            </span>
+          </md-list-item>
+          <md-list-item class="pro_item" layout="row" layout-align="left top">
+            <figure><a href="#"><img src="images/sidebar_pro_img.jpg" width="160" height="246"  alt=""/></a></figure>
+            <span>
+                <h2><a href="#">Han Solo #1</a></h2>
+                <div class="review" layout="row">Review: <ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon></div>
+                <p>Everyoneâ€™s favorite scoundrel gets his very own series! Han is given a top-secret undercover mission for the rebellion.</p>
+            </span>
+          </md-list-item>
+          <md-list-item class="pro_item" layout="row" layout-align="left top">
+            <figure><a href="#"><img src="images/sidebar_pro_img.jpg" width="160" height="246"  alt=""/></a></figure>
+            <span>
+                <h2><a href="#">Han Solo #1</a></h2>
+                <div class="review" layout="row">Review: <ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon></div>
+                <p>Everyoneâ€™s favorite scoundrel gets his very own series! Han is given a top-secret undercover mission for the rebellion.</p>
+            </span>
+          </md-list-item>
+          <md-list-item class="pro_item" layout="row" layout-align="left top">
+            <figure><a href="#"><img src="images/sidebar_pro_img.jpg" width="160" height="246"  alt=""/></a></figure>
+            <span>
+                <h2><a href="#">Han Solo #1</a></h2>
+                <div class="review" layout="row">Review: <ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon></div>
+                <p>Everyoneâ€™s favorite scoundrel gets his very own series! Han is given a top-secret undercover mission for the rebellion.</p>
+            </span>
+          </md-list-item>
+          <md-list-item class="pro_item" layout="row" layout-align="left top">
+            <figure><a href="#"><img src="images/sidebar_pro_img.jpg" width="160" height="246"  alt=""/></a></figure>
+            <span>
+                <h2><a href="#">Han Solo #1</a></h2>
+                <div class="review" layout="row">Review: <ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon><ng-md-icon icon="star_rate" style="fill: orange" size="20"></ng-md-icon></div>
+                <p>Everyoneâ€™s favorite scoundrel gets his very own series! Han is given a top-secret undercover mission for the rebellion.</p>
+            </span>
+          </md-list-item>
+        </md-list>
+    </div>
+    <div class="recommended_products">
+        <div class="rec_head" layout="row">
+        	<h4>Recommended</h4>
+            <span flex></span>
+            <a href="#">sponsored links</a>
+        </div>
+        <md-list class="product_list column-1">
+            <md-list-item class="pro_item" layout="column">
+              <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+              <h5><a href="#">Introduce Your Child To New Concepts Every Month With This Box</a></h5>
+              <p>Flintobox</p>
+            </md-list-item>
+            <md-list-item class="pro_item" layout="column">
+              <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+              <h5><a href="#">Introduce Your Child To New Concepts Every Month With This Box</a></h5>
+              <p>Flintobox</p>
+            </md-list-item>
+            <md-list-item class="pro_item" layout="column">
+              <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+              <h5><a href="#">Introduce Your Child To New Concepts Every Month With This Box</a></h5>
+              <p>Flintobox</p>
+            </md-list-item>
+        </md-list>
+    </div>
+  </md-sidenav>
+</div>
+<md-content class="popular_story container">
+  <md-toolbar class="blank-toolbar">
+    <div class="md-toolbar-tools">
+      <h2>Popular Story</h2>
+      <span flex></span>
+      <md-button class="md-primary" aria-label="View All">view all</md-button>
+    </div>
+  </md-toolbar>
+  <md-list class="product_list column-4">
+    <md-list-item class="pro_item" layout="column">
+      <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+      <h2><a href="#">Exclusive cover Reveal: NEW SUPER-MAN #3</a></h2>
+      <p>by Tony 'G-Man' Guerrero | Jun. 16 6:35pm</p>
+    </md-list-item>
+    <md-list-item class="pro_item" layout="column">
+      <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+      <h2><a href="#">Exclusive cover Reveal: NEW SUPER-MAN #3</a></h2>
+      <p>by Tony 'G-Man' Guerrero | Jun. 16 6:35pm</p>
+    </md-list-item>
+    <md-list-item class="pro_item" layout="column">
+      <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+      <h2><a href="#">Exclusive cover Reveal: NEW SUPER-MAN #3</a></h2>
+      <p>by Tony 'G-Man' Guerrero | Jun. 16 6:35pm</p>
+    </md-list-item>
+    <md-list-item class="pro_item" layout="column">
+      <figure><a href="#"><img src="images/grid_img.jpg" width="269" height="152"  alt=""/></a></figure>
+      <h2><a href="#">Exclusive cover Reveal: NEW SUPER-MAN #3</a></h2>
+      <p>by Tony 'G-Man' Guerrero | Jun. 16 6:35pm</p>
+    </md-list-item>
+  </md-list>
+</md-content>

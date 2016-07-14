@@ -1,3 +1,7 @@
+md-content.md-default-theme, md-content {
+    background-color: white;
+}
+body{ overflow:visible!important; position:static!important;}
 html.md-default-theme, html, body.md-default-theme, body { background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.87);}
 md-menu-bar.md-default-theme md-menu._md-open > button, md-menu-bar md-menu._md-open > button, md-menu-bar.md-default-theme md-menu > button:focus, md-menu-bar md-menu > button:focus, md-menu-bar md-menu > button.active { background:#c9494a; color:#fff; outline: medium none;}
 .main{ margin-bottom:20px;}
@@ -31,7 +35,7 @@ md-toolbar.blank-toolbar .md-toolbar-tools{ height:40px;}
 .product_list .pro_item{ float:left; margin-bottom:20px; padding:0; align-items:left}
 .product_list .pro_item h2, .product_list .pro_item h2 a{ font-size:24px; color:#333;}
 .product_list .pro_item p{ font-size:16px; color:#666; font-style:italic;}
-.product_list .pro_item ._md-secondary-container{ display:none;}
+.product_list .pro_item ._md-secondary-container,.detaillist ._md-secondary-container{ display:none;}
 .product_list figure{ margin:0; padding:0; width:100%; box-shadow:0 0 4px rgba(0, 0, 0, 0.5);}
 .product_list figure img{ width:100%; height:auto;}
 .carousel-caption h1{ font-size:40px; text-transform:uppercase; margin:0 0 20px;}
@@ -103,3 +107,23 @@ md-sidenav { max-width:100%; width:100%;}
 .carousel-caption h1 { font-size:18px; margin-bottom:0;}
 .carousel-indicators { bottom:-12px;}
 }
+
+
+section.chapter-pages {
+        text-align: center;
+        overflow-y: scroll;
+        height: 1000px;
+}
+
+.lazy-load, .lazy-loaded {
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.lazy-loaded { opacity: 1; }
+section.chapter-pages img{ min-height:600px;min-width:700px;clear:both;padding:10px;width:100%}
+

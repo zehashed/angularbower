@@ -8,12 +8,13 @@ header.controller('HeaderController', ['$scope', function($scope) {
 });
 
 
-var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.directives.dirPagination','ngRoute' ]);
+var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.directives.dirPagination','ngRoute' ,'ngMdIcons']);
 	app.config(function($routeProvider) {
     $routeProvider.
     when('/list', {
-        controller: "listCtrl",
-        templateUrl: 'app/directives/list/list.html'
+    	redirectTo: '/home'
+//         controller: "listCtrl",
+//         templateUrl: 'app/directives/list/list.html'
     }).
     when('/detail/:id', {
         controller: "DetailCtrl",
@@ -55,15 +56,75 @@ app.directive('userAvatar', function() {
 app.controller('HomeCtrl' , function($scope, $http,$routeParams,$location){
 	
 	//
-	$http.get("https://www.mangaeden.com/api/list/1/?p=0&l=30")
-        .then(function (response) {
-        console.log(response);
-        $scope.latestManga = response.data.manga;
-        });
-    $scope.goto_detail = function(id) {
+		 var inputMin = 4;
+		$scope.currentorder = 'date';
+		$scope.orderBy  = $scope.currentorder;
+		var vm = this;
+		vm.tiles = []; //declare an empty array
+		vm.availableSorts = [{"name" : "Title A-Z" , "value" : "t"}, {"name":"Hits" , "value":"h"}];
+		vm.pageNo = 0; // initialize page no to 1
+		vm.totalCount = 0;
+		vm.itemsPerPage = 36;
+		vm.getData = function(pageNo){ 
+			var it, results = [ ];
+			var APIItems = null ;
+			var tileTmpl = [{ image : "",title: "",background: ""}];
+			$http.get("data.json/list_s_0.json")
+			.then(function (response) {
+				APIItems = response.data.manga;
+				vm.totalCount = response.data.total;
+				j=0;
+				for(val in response.data.manga){
+					// remove the products which not having images
+					if(typeof APIItems[val].im == "undefined" ||  APIItems[val].im == null)
+					{
+						continue;
+					}
+					it = angular.extend({},tileTmpl);
+					it.image  = APIItems[val].im;
+					it.date = APIItems[val].it;
+					it.hits = APIItems[val].h;
+					it.title = APIItems[val].t;
+					it.i = APIItems[val].i;
+					it.cats = APIItems[val].c;
+					
+					it.span  = { row : 1, col : 1 };
+					it.info = APIItems[val];
+					switch((j+1)%10) {
+					  case 1:it.background = "red";				break;
+					  case 2: it.background = "green";         	break;
+					  case 3: it.background = "darkBlue";      	break;
+					  case 4: it.background = "blue";			break;
+					  case 5: it.background = "yellow";			break;
+					  case 6: it.background = "pink";          break;
+					  case 7: it.background = "darkBlue";      break;
+					  case 8: it.background = "purple";        break;
+					  case 9: it.background = "deepBlue";      break;
+					  case 10: it.background = "lightPurple";  break;
+					}
+					results.push(it);
+					j++;  
+				}
+				$scope.tiles =  results;
+				vm.tiles  = results;
+			});
+			
+		};
+		vm.getData(vm.pageNo);
+
+		$scope.goto_detail = function(id) {
 			$location.url('/detail/' + id);
 		};
-
+		$scope.onOrderChange = function(){
+			$scope.currentorder = $scope.orderBy;
+		}
+  
+  		$http.get("https://www.mangaeden.com/api/list/1/?p=0&l=30")
+			.then(function (response) {
+			$scope.latestManga = response.data.manga;
+        });
+		
+		
 });
 
 app.controller('DetailCtrl', function($scope, $http,$routeParams,$location) {

@@ -1,6 +1,8 @@
 <html lang="en" >
 <head>
 	<title>MangaPark</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<!-- Angular Material style sheet -->
 	<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
 	<link rel="stylesheet" href="node_modules/bootstrap-material-design/node_modules/bootstrap/dist/css/bootstrap.css" />
@@ -13,7 +15,7 @@
 	
 	<!-- APP -->
 	<div flex="" ng-cloak="" ng-app="MangaApp" id="AppContent">
-		<div ng-view></div>
+		<div ng-view class='container'></div>
 	</div>
 	<!-- APP -->
 	
@@ -33,7 +35,7 @@
 	<script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
 	<!-- Angular Pagination -->
 	<script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
-	<script src="node_modules/bootstrap-material-design/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<!-- Your application bootstrap  -->  
 	<script src="node_modules/bootstrap-material-design/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="app/app.js"></script>

@@ -8,7 +8,7 @@ header.controller('HeaderController', ['$scope', function($scope) {
 });
 
 
-var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.directives.dirPagination','ngRoute' ,'ngMdIcons']);
+var app =  angular.module('MangaApp',['ngMaterial', 'ngMessages','angularUtils.directives.dirPagination','ngRoute' ,'ngMdIcons','ng-coverflow', 'ng-coverflow.utils']);
 	app.config(function($routeProvider) {
     $routeProvider.
     when('/list', {
@@ -53,7 +53,7 @@ app.directive('userAvatar', function() {
     };
 });
 
-app.controller('HomeCtrl' , function($scope, $http,$routeParams,$location){
+app.controller('HomeCtrl' , [ '$scope', 'ngCoverflowItemFactory', '$http','$routeParams','$location',  function($scope, itemFactory, $http,$routeParams,$location){
 	
 	//
 		 var inputMin = 4;
@@ -118,14 +118,51 @@ app.controller('HomeCtrl' , function($scope, $http,$routeParams,$location){
 		$scope.onOrderChange = function(){
 			$scope.currentorder = $scope.orderBy;
 		}
-  
+		
+		
+		$scope.selectedIndex = 0;
+		$scope.items = [];
+		$scope.lManga = [];
   		$http.get("https://www.mangaeden.com/api/list/1/?p=0&l=30")
 			.then(function (response) {
 			$scope.latestManga = response.data.manga;
+			// $scope.images = [];
+// 			for(val in $scope.latestManga){
+// 				if(typeof $scope.latestManga[val].im == "undefined" ||  $scope.latestManga[val].im == null)
+// 				{
+// 					continue;
+// 				}
+// 				$scope.images.push("https://cdn.mangaeden.com/mangasimg/"+$scope.latestManga[val].im);
+// 			}
+// 			$scope.coverflow = {};
+// 			console.log($scope.coverflow);
+
+			for(val in $scope.latestManga){
+			if(typeof $scope.latestManga[val].im == "undefined" ||  $scope.latestManga[val].im == null || $scope.latestManga[val].s !=1)
+			{
+				continue;
+			}
+				$scope.lManga.push($scope.latestManga[val]);
+				$scope.items.push(
+				itemFactory({
+								title:$scope.latestManga[val].t,
+								subtitle:$scope.latestManga[val].i,
+								imageUrl:"https://cdn.mangaeden.com/mangasimg/"+$scope.latestManga[val].im
+							})
+				);
+			}
         });
+        
+        
+       
+		$scope.itemClickHandler = function (item) {
+			console.log('Item ' + item.title + ' was clicked');
+			$location.url('/detail/' + item.subtitle);
+		};
+
 		
 		
-});
+} ] );
 
 app.controller('DetailCtrl', function($scope, $http,$routeParams,$location) {
 	mangaId = $routeParams.id;

@@ -44,6 +44,30 @@
     <p>Fusce ac viverra libero. Donec vitae vulputate est, non fringilla odio. Nulla quam lacus, ultricies eget faucibus sit amet, vestibulum quis.</p>
   </div>
 </md-content>
+<md-content class="container">
+
+<ng-coverflow
+            header="Coverflow"
+            zoom="300"
+            rotation="40"
+            brightness=".60"
+            offset="150"
+            wrap-around="true"
+            items="items"
+            selected-index="{{selectedIndex}}"
+            item-click="itemClickHandler(item)">
+    </ng-coverflow>
+    
+<!-- 	<coverflow coverflow="coverflow"></coverflow> -->
+<!-- 
+	<cardflow model="cardflowSwipe" mode="swipe" class="page">
+		<div class="cardflow-card" ng-repeat="card in latestManga" >
+			<img ng-src="https://cdn.mangaeden.com/mangasimg/{{card.im}}" width="160" height="246" alt="" user_avatar/>
+			{{ card.t }}
+		</div>
+	</cardflow>
+ -->
+</md-content>
 <div class="container main" flex layout="row" layout-xs="column" layout-sm="column">
   <md-content flex id="content">
   	<div class="latest_story">
@@ -109,7 +133,7 @@
             <span flex></span> </div>
         </md-toolbar>
         <md-list class="product_list column-1">
-          <md-list-item class="pro_item" layout="row" layout-align="left top" ng-repeat="l_manga in latestManga|filter:s=1:im!=''|limitTo:10">
+          <md-list-item class="pro_item" layout="row" layout-align="left top" ng-repeat="l_manga in lManga">
             <figure><a href="javascript:void();" data-ng-click="goto_detail(l_manga.i)"><img ng-src="https://cdn.mangaeden.com/mangasimg/{{l_manga.im}}" width="160" height="246" alt="" user_avatar/></a></figure>
             <span>
                 <h2><a href="javascript:void();" data-ng-click="goto_detail(l_manga.i)">{{l_manga.t}}</a></h2>
@@ -145,6 +169,7 @@
     </div>
   </md-sidenav>
 </div>
+
 <md-content class="popular_story container">
   <md-toolbar class="blank-toolbar">
     <div class="md-toolbar-tools">
